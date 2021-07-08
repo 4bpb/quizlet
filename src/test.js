@@ -18,11 +18,15 @@ fetch(webURL, {
 
 .then(res => res.text())
 .then(body => {
-    const $ = cheerio.load(body);
-    let raw = $('#QuestionDetailsPageTarget').unwrap()[0].next.children[0].data
-    let raw2 = raw.replace('(function(){window.Quizlet["questionDetailsPageData"] = ','')
-    let raw3 = raw2.split('; QLoad("Quizlet.questionDetailsPageData");')
-    let json = JSON.parse(raw3[0])
-    let questionid = json.question.id
+    const $ = cheerio.load(body) // Fetches The body of the WebURL
+    let raw = $('#QuestionDetailsPageTarget').unwrap()[0].next.children[0].data // Selects the Page details and then narrows it down to the script that supplies the data
+
+    let raw2 = raw.replace('(function(){window.Quizlet["questionDetailsPageData"] = ','') // Takes out (function(){window.Quizlet["questionDetailsPageData"] = 
+    let raw3 = raw2.split('; QLoad("Quizlet.questionDetailsPageData");') // Splits the remaining string
+    //These two above are used to format the string into readable json 
+
+    let json = JSON.parse(raw3[0]) // The json
+
+    let questionid = json.question.id // Navigating The json to the id 
     console.log(questionid)
 });
