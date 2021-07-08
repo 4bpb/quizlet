@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
-    "cheerio": "^1.0.0-rc.6",
+    "cheerio": "^1.0.0-rc.10",
     "discord.js": "^12.5.3",
     "fs": "0.0.1-security",
     "moment": "^2.29.1",
